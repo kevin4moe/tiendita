@@ -1,21 +1,12 @@
 import { Router } from 'express';
-import { faker } from '@faker-js/faker';
+import ProductsService from '../service/products.service.js';
 
 const router = Router();
 
-router.get('/', (req, res) => {
-  const products = [];
-  const { size } = req.query;
-  const limit = size || 10;
+const productsService = new ProductsService();
 
-  for (let i = 0; i < limit; i++) {
-    products.push({
-      id: faker.datatype.uuid(),
-      name: faker.commerce.productName(),
-      price: faker.commerce.price(),
-      image: faker.image.imageUrl(),
-    });
-  }
+router.get('/', (req, res) => {
+  const products = productsService.productsRepository;
 
   res.json(products);
 });
