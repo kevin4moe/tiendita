@@ -7,9 +7,23 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>Tiendita</title>
   </head>
   <body>
-    <h1>Astro Express</h1>
+    <nav class="pl-4 py-2">
+      <h1 class=" text-lg font-semibold">Tiendita Express</h1>
+    </nav>
+    <main class="flex flex-row justify-center h-screen">
+      <div class="flex flex-col ">
+        <h3 class=" my-12 text-center text-3xl ">Tiendita</h3>
+        <form class="flex flex-col" action="" method="post">
+          <label for="name" hidden >Username</label>
+          <input class="h-8 mb-2 px-2 rounded-full border border-green-700 focus:outline-lime-300 focus:outline" type="text" name="name" id="name" placeholder="Username" />
+          <label for="password" hidden >Password</label>
+          <input class="h-8 mb-2 px-2 rounded-full border border-green-700 focus:outline-lime-300 focus:outline" type="text" name="password" id="password" placeholder="Password" />
+          <button class="h-8 rounded-full border border-green-700 bg-lime-100 focus:outline-lime-300 focus:outline" type="submit">Log in</button>
+        </form>
+      </div>
+    </main>
   </body>
 </html>
