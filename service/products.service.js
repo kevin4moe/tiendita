@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import boom from '@hapi/boom';
 
 class ProductsService {
   constructor(productsRepository = []) {
@@ -7,25 +8,36 @@ class ProductsService {
     this.productsRepository.length === 0 ? this.createFake() : false;
   }
 
-  create(products = []) {
+  async create(products = []) {
     if (products.length > 0) {
+      const ids = [];
       products.forEach((product) => {
-        this.productsRepository.push(product);
+        const id = faker.datatype.uuid();
+        this.productsRepository.push({
+          id,
+          ...product,
+        });
+        ids.push(id);
       });
+      return ids;
     } else {
-      this.productsRepository.push(products);
+      const id = faker.datatype.uuid();
+      this.productsRepository.push({
+        id,
+        ...products,
+      });
+      return id;
     }
   }
 
   createFake(size) {
-    const limit = size || 100;
+    const limit = size || 50;
     const products = [];
 
     for (let i = 0; i < limit; i++) {
       products.push({
-        id: faker.datatype.uuid(),
         name: faker.commerce.productName(),
-        price: faker.commerce.price(),
+        price: Number(faker.commerce.price()),
         image: faker.image.imageUrl(),
       });
     }
@@ -33,23 +45,44 @@ class ProductsService {
     this.create(products);
   }
 
-  find(id) {
-    const product = this.productsRepository.find(id);
+  async find(id) {
+    const index = this.productsRepository.findIndex(
+      (product) => product.id === id
+    );
+    return index;
+  }
+
+  async update(id, changes) {
+    const index = await this.find(id);
+    if (index === -1) {
+      throw boom.notFound('product not found');
+    }
+    const product = (this.productsRepository[index] = {
+      ...this.productsRepository[index],
+      ...changes,
+    });
     return product;
   }
 
-  findOne(id) {
-    const product = this.productsRepository.findOne(id);
-    return product;
+  async delete(id) {
+    const index = await this.find(id);
+    if (index === -1) {
+      throw boom.notFound('product not found');
+    }
+    this.productsRepository.splice(index, 1);
+    return id;
   }
 
-  update(id, changes) {
-    const product = this.productsRepository.update(id, changes);
-    return product;
-  }
+  async getProduct(id) {
+    const index = await this.find(id);
+    if (index === -1) {
+      throw boom.notFound('product not found');
+    }
 
-  delete(id) {
-    const product = this.productsRepository.delete(id);
+    const product = await this.productsRepository[index];
+    if (product.isBlock) {
+      throw boom.conflict('product is block');
+    }
     return product;
   }
 

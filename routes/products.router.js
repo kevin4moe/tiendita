@@ -15,25 +15,46 @@ router.get('/filter', (req, res) => {
   res.json({ msg: 'You are hitting products filter' });
 });
 
-router.get('/:productId', (req, res) => {
-  const { productId } = req.params;
-  res.json({ id: productId, name: 'Product Name', price: 100 });
+router.get('/:productId', async (req, res, next) => {
+  try {
+    const { productId } = req.params;
+    const product = await productsService.getProduct(productId);
+    res.json(product);
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.post('/', (req, res) => {
-  const body = req.body;
-  res.json({ msg: 'created', data: body });
+router.post('/', async (req, res, next) => {
+  try {
+    const data = req.body;
+    const id = await productsService.create(data);
+
+    res.status(201).json({ msg: 'created', id });
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.patch('/:productId', (req, res) => {
-  const { productId } = req.params;
-  const body = req.body;
-  res.json({ msg: 'updated', data: body, productId });
+router.patch('/:productId', async (req, res, next) => {
+  try {
+    const { productId } = req.params;
+    const body = req.body;
+    const product = await productsService.update(productId, body);
+    res.json({ msg: 'updated', product });
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.delete('/:productId', (req, res) => {
-  const { productId } = req.params;
-  res.json({ msg: 'deleted', productId });
+router.delete('/:productId', async (req, res, next) => {
+  try {
+    const { productId } = req.params;
+    await productsService.delete(productId);
+    res.json({ msg: 'deleted', productId });
+  } catch (error) {
+    next(error);
+  }
 });
 
 export default router;
