@@ -1,0 +1,85 @@
+<script setup>
+import { useStore } from "@nanostores/vue";
+import { cartStore, addToCart } from "../stores/products.js";
+
+const cart = useStore(cartStore);
+</script>
+
+<template>
+  <div class="ingredientslist">
+    <header
+      class="ingredientslist-header rounded-t bg-lime-500 px-10 py-1 text-center text-white"
+    >
+      <h2 class="text-lg font-semibold">Productos</h2>
+    </header>
+    <ul class="ingredientslist-ul">
+      <li v-for="item in cart.items" class="tooltip" :key="item.name">
+        <div class="content">
+          {{ item.category.name }}{{ item.name }}
+          <span class="tooltiptext">
+            {{ item.category.name }}
+            {{
+              `$${item.specs.price_porcion} (${item.specs.gj_porcion} ${item.specs.gramaje})`
+            }}
+          </span>
+        </div>
+        <div>
+          <button class="mr-1 text-xs font-light" type="button">Check</button>
+          <!-- Create screen for edit item -->
+          <button class="text-xs font-light" type="button">Delete</button>
+          <!-- Create confirm screen for delete item -->
+        </div>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<style>
+.ingredientslist {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+}
+.ingredientslist-ul {
+  display: flex;
+  flex-direction: column;
+}
+.ingredientslist-ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  widows: 100%;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem 0.5rem;
+}
+
+.content {
+  position: relative;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 8rem;
+  background-color: black;
+  color: white;
+  font-size: small;
+  text-align: center;
+  padding: 0.5rem 0;
+  position: absolute;
+  border-radius: 6px;
+  z-index: 1;
+  top: 100%;
+  left: -20%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.content:hover .tooltiptext {
+  visibility: visible;
+  opacity: 0.9;
+}
+
+.tooltip .content {
+  cursor: pointer;
+}
+</style>
