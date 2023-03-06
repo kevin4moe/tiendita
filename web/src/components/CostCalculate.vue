@@ -1,6 +1,7 @@
 <script setup>
-import { useStore } from "@nanostores/vue";
 import { ref, reactive, computed } from "vue";
+import { useStore } from "@nanostores/vue";
+import { v4 as uuidv4 } from "uuid";
 import { cartStore, addToCart } from "../stores/products.js";
 import IgredientsList from "./IngredientsList.vue";
 
@@ -14,6 +15,7 @@ const gj_porcion = ref(0);
 
 function saveValues() {
   const product = {
+    id: uuidv4(),
     name: name.value,
     specs: {
       gj_total: gj_total.value,
