@@ -1,8 +1,28 @@
 <script setup>
+import { ref } from "vue";
 import { useStore } from "@nanostores/vue";
-import { cartStore, addToCart } from "../stores/products.js";
+import { cartStore, addToCart, removeFromCart } from "../stores/products.js";
+import EditItem from "./EditItem.vue";
 
 const cart = useStore(cartStore);
+
+const show = ref(false);
+
+function deleteItem(id) {
+  removeFromCart(cartStore, id);
+}
+
+function confirmDeleteAction(id) {
+  if (window.confirm("¿Estás seguro de que quieres eliminar este elemento?")) {
+    deleteItem(id);
+  } else {
+    console.log(`No se eliminó el elemento con id: ${id}`);
+  }
+}
+
+function checkItem() {
+  show.value = !show.value;
+}
 </script>
 
 <template>
@@ -24,10 +44,21 @@ const cart = useStore(cartStore);
           </span>
         </div>
         <div>
-          <button class="mr-1 text-xs font-light" type="button">Check</button>
-          <!-- Create screen for edit item -->
-          <button class="text-xs font-light" type="button">Delete</button>
-          <!-- Create confirm screen for delete item -->
+          <button
+            class="mr-1 text-xs font-light"
+            type="button"
+            @click="checkItem"
+          >
+            Check
+          </button>
+          <EditItem :item="item" :show="show" @close="checkItem" />
+          <button
+            class="text-xs font-light"
+            type="button"
+            @click="confirmDeleteAction(item.id)"
+          >
+            Delete
+          </button>
         </div>
       </li>
     </ul>

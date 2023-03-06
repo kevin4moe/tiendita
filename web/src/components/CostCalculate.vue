@@ -127,6 +127,8 @@ const oneActiveCategory = (value) => {
 .price-calculator {
   display: flex;
   flex-direction: column;
+  background-color: white;
+  border-radius: 0.25rem;
 }
 .price-calculator__input {
   display: flex;
