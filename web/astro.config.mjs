@@ -5,16 +5,16 @@ import vue from "@astrojs/vue";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "server",
+  adapter: node({
+    mode: "middleware",
+  }),
   integrations: [
     vue(),
     tailwind({
       config: { path: "./tailwind.config.cjs" },
     }),
   ],
-  output: "server",
-  adapter: node({
-    mode: "middleware",
-  }),
   vite: {
     ssr: {
       noExternal: ["path-to-regexp"],

@@ -7,7 +7,7 @@
   "scripts": {
     "astro": "npm run dev --workspaces=web",
     "build": "npm run build --workspaces=web",
-    "dev:server": "nodemon index.js",
+    "dev:server": "nodemon --experimental-modules --es-module-specifier-resolution=node index.js",
     "dev:all": "npm run build && nodemon index.js",
     "start": "npm run build && node index.js",
     "lint": "eslint . --ext .js"
@@ -26,12 +26,12 @@
     "prettier-plugin-tailwindcss": "^0.2.3"
   },
   "dependencies": {
-    "@astrojs/node": "^5.0.3",
-    "@astrojs/tailwind": "^3.0.1",
-    "@astrojs/vue": "^2.0.1",
+    "@astrojs/node": "^5.1.0",
+    "@astrojs/tailwind": "^3.1.0",
+    "@astrojs/vue": "^2.1.0",
     "@hapi/boom": "^10.0.1",
     "@nanostores/vue": "^0.7.0",
-    "astro": "^2.0.14",
+    "astro": "^2.1.2",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
