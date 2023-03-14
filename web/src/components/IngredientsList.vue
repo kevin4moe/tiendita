@@ -2,6 +2,11 @@
 import { ref } from "vue";
 import { useStore } from "@nanostores/vue";
 import { cartStore, addToCart, removeFromCart } from "../stores/products.js";
+import {
+  storeRecipes,
+  localRecipes,
+  addToCart as addToRecipes,
+} from "../stores/recipes.js";
 import EditItem from "./EditItem.vue";
 
 const cart = useStore(cartStore);
@@ -22,6 +27,12 @@ function confirmDeleteAction(id) {
 
 function checkItem() {
   show.value = !show.value;
+}
+
+function saveRecipe() {
+  const ids = cart.value.items.map((item) => item.id);
+  console.log(ids);
+  addToRecipes(storeRecipes, ids, localRecipes);
 }
 </script>
 
@@ -62,6 +73,13 @@ function checkItem() {
         </div>
       </li>
     </ul>
+    <footer
+      class="ingredientslist-footer rounded-b bg-lime-500 px-10 py-1 text-center text-white"
+    >
+      <button class="text-xs font-light" type="button" @click="saveRecipe">
+        Guardar receta
+      </button>
+    </footer>
   </div>
 </template>
 
