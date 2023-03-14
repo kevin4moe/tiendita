@@ -1,7 +1,13 @@
 import { map, computed, actionFor } from 'nanostores';
+import { persistentAtom } from '@nanostores/persistent';
+
+export const shoppingCart = persistentAtom('locale', [], {
+  encode: JSON.stringify,
+  decode: JSON.parse,
+});
 
 export const cartStore = map({
-  items: [],
+  items: [...shoppingCart.get()],
   total: computed((get) => {
     const items = get(cartStore.items);
     return items.reduce((total, item) => total + item.totalPrice, 0);
@@ -14,6 +20,7 @@ export const addToCart = actionFor(
   (store, newTitle) => {
     const itemList = store.get();
     store.setKey('items', [...itemList.items, newTitle]);
+    shoppingCart.set([...shoppingCart.get(), newTitle]);
   }
 );
 
