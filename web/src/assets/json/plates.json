@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Baguette Campestre",
+    "category": "Baguettes",
+    "price": 55,
+    "ingredients": "baguette, jamón, lechuga, jitomate, pimiento, pepino, aderezos",
+    "options": "",
+    "image": "baguette Campestre.jpeg"
+  },
+  {
+    "name": "Baguette Pizza",
+    "category": "Baguettes",
+    "price": 57,
+    "ingredients": "baguette, peperoni, lechuga, jitomate, pimiento, pepino, aderezos",
+    "options": "",
+    "image": "baguette pizza.jpeg"
+  },
+  {
+    "name": "Baguette Expresso",
+    "category": "Baguettes",
+    "price": 60,
+    "ingredients": "baguette, peperoni, jamón, lechuga, jitomate, pimiento, pepino, aderezos",
+    "options": "Empanizada, Estilo BBQ, A la plancha",
+    "image": "baguette Campestre.jpeg"
+  },
+  {
+    "name": "Chilaquiles",
+    "category": "Desayunos",
+    "price": 50,
+    "ingredients": "totopos, salsa, crema, queso, cilantro, cebolla",
+    "options": "",
+    "image": "chilaquiles.jpeg"
+  },
+  {
+    "name": "Orden de Molletes",
+    "category": "Desayunos",
+    "price": 30,
+    "ingredients": "bolillos, frijoles, queso, salsa mexicana",
+    "options": "",
+    "image": "baguette Campestre.jpeg"
+  },
+  {
+    "name": "Waffles Sencillos",
+    "category": "Waffles",
+    "price": 40,
+    "ingredients": "waffles, mantequilla",
+    "options": "",
+    "image": "baguette Campestre.jpeg"
+  },
+  {
+    "name": "Waffles con Fruta",
+    "category": "Waffles",
+    "price": 55,
+    "ingredients": "waffles, mantequilla, fruta",
+    "options": "",
+    "image": "baguette Campestre.jpeg"
+  },
+  {
+    "name": "Waffles con Nutella",
+    "category": "Waffles",
+    "price": 55,
+    "ingredients": "waffles, mantequilla, fruta, nutella",
+    "options": "",
+    "image": "baguette Campestre.jpeg"
+  },
+  {
+    "name": "Waffles con Helado y Chantilly",
+    "category": "Waffles",
+    "price": 55,
+    "ingredients": "waffles, mantequilla, fruta, helado y chantilly",
+    "options": "",
+    "image": "baguette Campestre.jpeg"
+  },
+  {
+    "name": "Café Americano",
+    "category": "Waffles",
+    "price": 30,
+    "ingredients": "agua, café",
+    "options": "",
+    "image": "baguette Campestre.jpeg"
+  }
+]
