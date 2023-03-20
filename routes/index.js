@@ -11,6 +11,10 @@ function routerApi(app) {
   router.get('/auth', isAuthorized, (req, res) => {
     res.send('Hello World!');
   });
+  router.post('/myservice', (req, res) => {
+    console.log('req.body', req.body);
+    console.log('name', req.body.name);
+  });
   router.use('/users', usersRouter);
   router.use('/categories', categoriesRouter);
   router.use('/products', productsRouter);
