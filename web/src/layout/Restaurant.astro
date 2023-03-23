@@ -1,0 +1,22 @@
+---
+import Sidemenu from "../components/Sidemenu.astro";
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Tiendita</title>
+  </head>
+  <body>
+    <nav class="fixed z-50 top-0 w-screen pl-4 py-2 h-12 bg-black">
+      <h1 class="text-white text-lg font-semibold">Tiendita Express</h1>
+    </nav>
+    <div class="flex flex-row w-full mt-12">
+      <Sidemenu />
+      <slot />
+    </div>
+  </body>
+</html>
