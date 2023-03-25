@@ -1,0 +1,25 @@
+{
+  "shipping": {
+    "name": "John Doe",
+    "address": "1234 Main Street",
+    "city": "San Francisco",
+    "state": "CA",
+    "country": "US",
+    "zip": 94111
+  },
+  "items": [
+    {
+      "article": "Chilaquiles",
+      "quantity": 2,
+      "amount": 50,
+      "total": 100
+    },
+    {
+      "article": "Baguette",
+      "quantity": 1,
+      "amount": 57,
+      "total": 57
+    }
+  ],
+  "subtotal": 157
+}
