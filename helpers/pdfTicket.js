@@ -4,11 +4,11 @@ import path from 'path';
 
 const fontRegular = path.join(
   path.resolve(),
-  './public/font/Open Sans/static/OpenSans/OpenSans-Regular.ttf'
+  './public/font/Open Sans/OpenSans-Regular.ttf'
 );
 const fontBold = path.join(
   path.resolve(),
-  './public/font/Open Sans/static/OpenSans/OpenSans-Bold.ttf'
+  './public/font/Open Sans/OpenSans-Bold.ttf'
 );
 
 const savePath = path.join(path.resolve(), './public/pdf/invoice.pdf');
