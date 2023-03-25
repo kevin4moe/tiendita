@@ -1,6 +1,7 @@
 import fs from 'fs';
 import PDFDocument from 'pdfkit';
 import path from 'path';
+import businessInfo from '../config/businessInfo.json';
 
 const fontRegular = path.join(
   path.resolve(),
@@ -12,16 +13,6 @@ const fontBold = path.join(
 );
 
 const savePath = path.join(path.resolve(), './public/pdf/invoice.pdf');
-
-const businessInfo = {
-  name: 'ACME Inc.',
-  address: '123 Main Street',
-  city: 'New York',
-  state: 'NY',
-  zip: '10025',
-  phone: '(555) 555-5555',
-  email: '',
-};
 
 function createTicket(ticket) {
   let doc = new PDFDocument({ size: 'A4', margin: 50 });

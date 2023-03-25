@@ -219,3 +219,6 @@ $RECYCLE.BIN/
 
 postgres/
 pgadmin/
+
+public/pdf/*.pdf
+config/*.json

@@ -1,0 +1,9 @@
+{
+  "name": "ACME Inc.",
+  "address": "123 Main Street",
+  "city": "New York",
+  "state": "NY",
+  "zip": "10025",
+  "phone": "(555) 555-5555",
+  "email": ""
+}
