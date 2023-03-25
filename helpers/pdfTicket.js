@@ -1,7 +1,7 @@
 import fs from 'fs';
 import PDFDocument from 'pdfkit';
 import path from 'path';
-import businessInfo from '../config/businessInfo.json';
+import businessInfo from '../config/businessInfo.json' assert { type: 'json' };
 
 const fontRegular = path.join(
   path.resolve(),
@@ -12,10 +12,14 @@ const fontBold = path.join(
   './public/font/Open Sans/OpenSans-Bold.ttf'
 );
 
-const savePath = path.join(path.resolve(), './public/pdf/invoice.pdf');
-
 function createTicket(ticket) {
+  const savePath = path.join(
+    path.resolve(),
+    `./public/pdf/${ticket.meta.date} #${ticket.meta.count}.pdf`
+  );
+
   let doc = new PDFDocument({ size: 'A4', margin: 50 });
+  doc.pipe(fs.createWriteStream(savePath));
 
   generateHeader(doc);
   generateCustomerInformation(doc, ticket);
@@ -23,7 +27,6 @@ function createTicket(ticket) {
   generateFooter(doc);
 
   doc.end();
-  doc.pipe(fs.createWriteStream(savePath));
 }
 
 function generateHeader(doc) {
@@ -53,13 +56,13 @@ function generateCustomerInformation(doc, ticket) {
 
   doc
     .fontSize(10)
-    .text('ticket Number:', 50, customerInformationTop)
+    .text('Ticket Number:', 50, customerInformationTop)
     .font(fontBold)
-    .text(ticket.invoice_nr, 150, customerInformationTop)
+    .text(ticket.meta.count, 150, customerInformationTop)
     .font(fontRegular)
-    .text('ticket Date:', 50, customerInformationTop + 15)
+    .text('Ticket Date:', 50, customerInformationTop + 15)
     .text(formatDate(new Date()), 150, customerInformationTop + 15)
-    .text('Balance Due:', 50, customerInformationTop + 30)
+    .text('Total:', 50, customerInformationTop + 30)
     .text(formatCurrency(ticket.subtotal), 150, customerInformationTop + 30)
 
     .font(fontBold)

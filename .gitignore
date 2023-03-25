@@ -222,3 +222,4 @@ pgadmin/
 
 public/pdf/*.pdf
 config/*.json
+database/local/*.json
